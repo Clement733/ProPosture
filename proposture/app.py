@@ -1,18 +1,21 @@
 #import libraries
 import cv2
 import mediapipe as mp
-
+import streamlit as st
 #import modules
-from proposture.utils import load_video, get_angles, get_landmarks, get_video_dimensions, get_sideview
-from proposture.metrics import get_reps_and_stage, get_rep_advice, get_neck, get_hip, get_knee, get_hand, get_hand_align, get_shoulder_elbow_dist
-from proposture.visuals import show_status, show_neck, show_hip, show_knee, show_hand, show_align, show_elbow
+from utils import load_video, get_angles, get_landmarks, get_video_dimensions, get_sideview
+from metrics import get_reps_and_stage, get_rep_advice, get_neck, get_hip, get_knee, get_hand, get_hand_align, get_shoulder_elbow_dist
+from visuals import show_status, show_neck, show_hip, show_knee, show_hand, show_align, show_elbow
 
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose
 
 #load video
 video_file_path = "media/frontview_pushupbadgood.mp4"
-cap = load_video(video_file_path)
+# cap = load_video(video_file_path)
+# with st.expander('Display live video here:'):
+#     st.title('Live video')
+cap = cv2.VideoCapture(video_file_path)
 height, width = get_video_dimensions(cap)
 advice_list = []
 
@@ -133,12 +136,12 @@ def main(cap, height, width, view = 'front', rep_counter = 0, stage = 'START'):
 
             #Render detections
             mp.solutions.drawing_utils.draw_landmarks(image, results.pose_landmarks,
-                                                  mp.solutions.pose.POSE_CONNECTIONS,
-                                                  mp.solutions.drawing_utils.DrawingSpec(
-                                                      color=(245, 117, 66), thickness=2, circle_radius=2),
-                                                  mp.solutions.drawing_utils.DrawingSpec(
-                                                      color=(245, 66, 230), thickness=2, circle_radius=2)
-                                                  )
+                                                mp.solutions.pose.POSE_CONNECTIONS,
+                                                mp.solutions.drawing_utils.DrawingSpec(
+                                                    color=(245, 117, 66), thickness=2, circle_radius=2),
+                                                mp.solutions.drawing_utils.DrawingSpec(
+                                                    color=(245, 66, 230), thickness=2, circle_radius=2)
+                                                )
 
 
             #5 DISPLAYING WINDOW
