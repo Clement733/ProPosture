@@ -135,7 +135,7 @@ def main():
             if not ret:
                 print("Can't receive frame (stream end?). Exiting ...")
                 break
-            video_path = load_video_and_release(vf, "mp4", 'video_output')
+            video_path = load_video_and_release(str(vf), "mp4", 'video_output')
             video_final = predict_on_stream(video_path)
 
         stframe.image(video_final)
