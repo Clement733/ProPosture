@@ -11,7 +11,7 @@ import cv2
 import numpy as np
 import mediapipe as mp
 
-from main import draw_landmarks, predict_on_stream
+from main import draw_landmarks, predict_on_stream, load_video_and_release
 
 from fake_objects import FakeResultObject, FakeLandmarksObject, FakeLandmarkObject
 
@@ -135,9 +135,10 @@ def main():
             if not ret:
                 print("Can't receive frame (stream end?). Exiting ...")
                 break
-            video_path = predict_on_stream(vf, '*.mp4', 480, 240)
+            video_path = load_video_and_release(vf, "mp4", 'video_output')
+            video_final = predict_on_stream(video_path)
 
-        stframe.image(video_path)
+        stframe.image(video_final)
 
 if __name__ == "__main__":
     main()

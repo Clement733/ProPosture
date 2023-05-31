@@ -135,6 +135,29 @@ def main():
     cap.release()
     cv.destroyAllWindows()
 
+def load_video_and_release(path : str, output_format: str, output_name :str):
+    """
+    load video and define output format
+    """
+    # Conversion on the video in a opencv Videocapture (collection of frames)
+    vid = cv.VideoCapture(path)
+    fps = int(vid.get(cv.CAP_PROP_FPS))
+    frame_count = int(vid.get(cv.CAP_PROP_FRAME_COUNT))
+    width  = int(vid.get(cv.CAP_PROP_FRAME_WIDTH))
+    height = int(vid.get(cv.CAP_PROP_FRAME_HEIGHT))
+    print(f"Video analysed: \n fps: {fps}, *\
+          \n frame count: {frame_count} , \n width : {width}, \n height : {height}")
+
+    # creation onf the writer to recompose the video later on
+    if output_format =="avi":
+        writer = cv.VideoWriter(f"{output_name}.avi",
+        cv.VideoWriter_fourcc(*"MJPG"), fps,(width,height))
+    elif output_format =="mp4":
+        writer = cv.VideoWriter(f"{output_name}.mp4",
+        cv.VideoWriter_fourcc(*"mp4v"), fps,(width,height))
+
+    return vid, writer, fps, frame_count, width, height
+
 def predict_on_stream(vid, writer, width: int, height :int):
     """
     Calculate synchronization scores & write frames to video
