@@ -137,7 +137,7 @@ def main():
                 break
             video_path = predict_on_stream(vf)
 
-    stframe.image(video_path)
+        stframe.image(video_path)
 
 if __name__ == "__main__":
     main()
