@@ -5,7 +5,6 @@ import numpy as np
 import mediapipe as mp
 import os
 import time
-import tensorflow as tf
 from utils import load_video, get_angles, get_landmarks, get_video_dimensions, get_sideview
 from metrics import get_reps_and_stage, get_rep_advice, get_neck, get_hip, get_knee, get_hand, get_hand_align, get_shoulder_elbow_dist
 from visuals import show_neck, show_hip, show_knee, show_hand, show_align, show_elbow, show_status
@@ -270,32 +269,6 @@ def draw_landmarks(
 
             return image
     return image
-
-def load_image(path : str):
-        image = tf.io.read_file(path)
-        image = tf.compat.v1.image.decode_jpeg(image)
-        image = tf.expand_dims(image, axis=0)
-        # Resize and pad the image to keep the aspect ratio and fit the expected size.
-        image = tf.cast(tf.image.resize_with_pad(image, 160, 256), dtype=tf.int32)
-        return image
-
-def preprocess_image(image, new_width, new_height):
-    """
-    take an frame of a video converted to an image through opencv,
-    wth the new_width and new height  for reshaping purpose.
-    Based on the image original definition :
-    - (480p: 854px by 480px)
-    - (720p: 854px by 480px)
-    - (1080p: 854px by 480px)
-    """
-    start = time.time()
-    # Resize to the target shape and cast to an int32 vector
-    input_image = tf.cast(tf.image.resize_with_pad(image, new_width, new_height), dtype=tf.int32)
-    # Create a batch (input tensor)
-    # input_image = tf.expand_dims(input_image, axis=0)
-
-    print(input_image.shape)
-    return input_image
 
 if __name__ == '__main__':
     main()
