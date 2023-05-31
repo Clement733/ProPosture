@@ -139,12 +139,15 @@ def predict_on_stream(vid, writer, width: int, height :int):
     """
     Calculate synchronization scores & write frames to video
     """
+    fps = int(vid.get(cv.CAP_PROP_FPS))
+    width  = int(vid.get(cv.CAP_PROP_FRAME_WIDTH))
+    height = int(vid.get(cv.CAP_PROP_FRAME_HEIGHT))
     if writer =="avi":
         writer = cv.VideoWriter("video_proposture.avi",
-        cv.VideoWriter_fourcc(*"MJPG"), (width,height))
+        cv.VideoWriter_fourcc(*"MJPG"), fps, (width,height))
     elif writer =="mp4":
         writer = cv.VideoWriter("video_proposture.mp4",
-        cv.VideoWriter_fourcc(*"mp4v"), (width,height))
+        cv.VideoWriter_fourcc(*"mp4v"), fps, (width,height))
 
     while(vid.isOpened()):
         ret, frame = vid.read()
