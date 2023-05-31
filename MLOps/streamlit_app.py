@@ -11,7 +11,7 @@ import cv2
 import numpy as np
 import mediapipe as mp
 
-from main import draw_landmarks
+from main import draw_landmarks, predict_on_stream
 
 from fake_objects import FakeResultObject, FakeLandmarksObject, FakeLandmarkObject
 
@@ -135,7 +135,9 @@ def main():
             if not ret:
                 print("Can't receive frame (stream end?). Exiting ...")
                 break
-            stframe.image(draw_landmarks(frame, video_settings='Pushups aide', view='side'))
+            video_path = predict_on_stream(vf)
+
+    stframe.image(video_path)
 
 if __name__ == "__main__":
     main()

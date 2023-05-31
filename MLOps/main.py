@@ -135,6 +135,28 @@ def main():
     cap.release()
     cv.destroyAllWindows()
 
+def predict_on_stream(vid, writer, width: int, height :int):
+    """
+    Calculate synchronization scores & write frames to video
+    """
+
+    while(vid.isOpened()):
+        ret, frame = vid.read()
+        if ret==True:
+            image = frame.copy()
+
+            # Making prediction
+            keypoints = draw_landmarks(image)
+            keypoints= np.squeeze(np.multiply(keypoints, [height,width,1]))
+
+            # write video
+            writer.write(keypoints)
+        else:
+            break
+
+    writer.release()
+
+    return None
 
 def draw_landmarks(
     image,
