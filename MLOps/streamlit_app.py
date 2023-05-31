@@ -11,7 +11,7 @@ import cv2
 import numpy as np
 import mediapipe as mp
 
-from main import draw_landmarks, predict_on_stream, load_video_and_release
+from main import draw_landmarks, predict_on_stream
 
 from fake_objects import FakeResultObject, FakeLandmarksObject, FakeLandmarkObject
 
