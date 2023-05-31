@@ -11,7 +11,7 @@ import cv2
 import numpy as np
 import mediapipe as mp
 
-from main import draw_landmarks, preprocess_image, load_image
+from main import draw_landmarks
 
 from fake_objects import FakeResultObject, FakeLandmarksObject, FakeLandmarkObject
 
