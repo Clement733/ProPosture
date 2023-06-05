@@ -41,10 +41,11 @@ def get_landmarks(results):
         r_ear = [landmarks[mp_pose.PoseLandmark.RIGHT_EAR.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_EAR.value].y]
         r_knee = [landmarks[mp_pose.PoseLandmark.RIGHT_KNEE.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_KNEE.value].y]
 
-        return l_shoulder, l_elbow, l_wrist, l_hip, l_ankle, l_ear, l_knee, r_shoulder, r_elbow, r_wrist, r_hip, r_ankle, r_ear, r_knee
-
     except:
-            return None
+        pass
+
+    return l_shoulder, l_elbow, l_wrist, l_hip, l_ankle, l_ear, l_knee, r_shoulder, r_elbow, r_wrist, r_hip, r_ankle, r_ear, r_knee
+
 
 # CHECKING WHICH SIDE THE PERSON IS FILMING
 def get_sideview(*landmarks):

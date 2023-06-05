@@ -135,31 +135,30 @@ def main():
     cap.release()
     cv.destroyAllWindows()
 
-def predict_on_stream(vid, writer, width: int, height :int):
+def predict_on_stream(vid, width: int, height :int):
     """
     Calculate synchronization scores & write frames to video
     """
     fps = int(vid.get(cv.CAP_PROP_FPS))
     width  = int(vid.get(cv.CAP_PROP_FRAME_WIDTH))
     height = int(vid.get(cv.CAP_PROP_FRAME_HEIGHT))
-    if writer =="avi":
-        writer = cv.VideoWriter("video_proposture.avi",
-        cv.VideoWriter_fourcc(*"MJPG"), fps, (width,height))
-    elif writer =="mp4":
-        writer = cv.VideoWriter("video_proposture.mp4",
+    writer = cv.VideoWriter("video_proposture.mp4",
         cv.VideoWriter_fourcc(*"mp4v"), fps, (width,height))
-
+    count=0
     while(vid.isOpened()):
         ret, frame = vid.read()
-        if ret==True:
-            image = frame.copy()
 
+        if ret==True:
+            frame = cv.cvtColor(frame, cv.COLOR_BGR2RGB)
+            image = frame.copy()
             # Making prediction
-            keypoints = draw_landmarks(image)
-            keypoints= np.squeeze(np.multiply(keypoints, [height,width,1]))
+            keypoints = draw_landmarks(image, view='side', video_settings='Pushups aide')
+            # keypoints= np.squeeze(np.multiply(keypoints, [height,width,1]))
 
             # write video
             writer.write(keypoints)
+            count += 1
+            print(count)
         else:
             break
 

@@ -10,11 +10,8 @@ import av
 import cv2
 import numpy as np
 import mediapipe as mp
-
 from main import draw_landmarks, predict_on_stream
-
 from fake_objects import FakeResultObject, FakeLandmarksObject, FakeLandmarkObject
-
 from turn import get_ice_servers
 
 
@@ -94,6 +91,9 @@ class Tokyo2020PictogramVideoProcessor(VideoProcessorBase):
 
 
 def main():
+    st.markdown("""
+                # :red[*Proposture!* 💪]
+                """)
     with st.expander("If you want to film yourself from the front"):
         model_complexity = st.radio("Model complexity", [0, 1, 2], index=0)
 
@@ -115,12 +115,20 @@ def main():
         if webrtc_ctx.video_processor:
             webrtc_ctx.video_processor.video_settings = video_settings
 
-    st.title("If you want to upload a side view")
+    st.markdown('''
+                ## **If you want to upload a side view** 🎥
+                ''')
 
     # Display the file uploader and button
-    uploaded_file = st.file_uploader("Upload a video file", type=["mp4", "mov"])
+    uploaded_file = st.file_uploader("Upload a video file 🎬", type=["mp4", "mov"])
 
     if uploaded_file is not None:
+        st.balloons()
+        st.balloons()
+        st.balloons()
+        st.balloons()
+        st.balloons()
+        st.balloons()
         # Save the video file to a temporary location
         # string_data = video_path.read()
         tfile = tempfile.NamedTemporaryFile(delete=False)
@@ -128,16 +136,27 @@ def main():
         vf = cv2.VideoCapture(tfile.name)
 
         stframe = st.empty()
-        while vf.isOpened():
-            ret, frame = vf.read()
-            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-            # if frame is read correctly ret is True
-            if not ret:
-                print("Can't receive frame (stream end?). Exiting ...")
-                break
-            video_final = predict_on_stream(vf, 'mp4', 240, 240)
+        # while vf.isOpened():
+        #     ret, frame = vf.read()
+        #     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        #     # if frame is read correctly ret is True
+        #     if not ret:
+        #         print("Can't receive frame (stream end?). Exiting ...")
+        #         break
+        _ = predict_on_stream(vf, 240, 240)
+        video_file = open("video_proposture.mp4", 'rb')
+        stframe.video(video_file.read())
 
-        stframe.image(video_final)
+
+
+    st.info('This is an alpha, we only had 1 week and a half 😥')
+    columns = st.columns(3)
+
+    first_name = columns[0].text_input("File structure 🗄️", value="Justin")
+
+    last_name = columns[1].text_input("Metrics ✖️", value="Hippolyte")
+
+    location = columns[2].text_input("MLOps 🥵", value="Clément")
 
 if __name__ == "__main__":
     main()
