@@ -10,12 +10,12 @@ import av
 import cv2
 import numpy as np
 import mediapipe as mp
+from MLOps.main import draw_landmarks
+from MLOps.fake_objects import FakeResultObject, FakeLandmarksObject, FakeLandmarkObject
+from MLOps.turn import get_ice_servers
+from fastapi import FastAPI
 
-from main import draw_landmarks
-
-from fake_objects import FakeResultObject, FakeLandmarksObject, FakeLandmarkObject
-
-from turn import get_ice_servers
+app = FastAPI()
 
 
 _SENTINEL_ = "_SENTINEL_"
@@ -89,7 +89,7 @@ class Tokyo2020PictogramVideoProcessor(VideoProcessorBase):
         self._stop_pose_process()
         print("Stopped!")
 
-
+@app.get('/')
 def streamlit():
     with st.expander("If you want to film yourself from the front"):
         model_complexity = st.radio("Model complexity", [0, 1, 2], index=0)

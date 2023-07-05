@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <video autoplay="true" id="videoElement"></video>
+    <script>
+        var video = document.querySelector("#videoElement");
+
+        if (navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function (stream) {
+                    video.srcObject = stream;
+                })
+                .catch(function (err0r) {
+                    console.log("Something went wrong!");
+                });
+        }
+
+        setInterval(function(){
+            captureImage(video);
+        }, 5000); // Capture image every 5 seconds
+
+        function captureImage(video) {
+            var canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0);
+            var imgData = canvas.toDataURL('image/jpeg'); // Get image as JPEG base64 data
+            sendDataToServer(imgData);
+        }
+
+        function sendDataToServer(imgData) {
+            // Send the image data to the server here
+            // You can use Fetch API or XMLHttpRequest
+            fetch('http://localhost:5000/api/upload', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({image: imgData})
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

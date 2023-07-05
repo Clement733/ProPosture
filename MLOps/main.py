@@ -6,9 +6,9 @@ import mediapipe as mp
 import os
 import time
 import tensorflow as tf
-from proposture.utils import load_video, get_angles, get_landmarks, get_video_dimensions, get_sideview
-from proposture.metrics import get_reps_and_stage, get_rep_advice, get_neck, get_hip, get_knee, get_hand, get_hand_align, get_shoulder_elbow_dist
-from proposture.visuals import show_neck, show_hip, show_knee, show_hand, show_align, show_elbow, show_status
+from utils import load_video, get_angles, get_landmarks, get_video_dimensions, get_sideview
+from metrics import get_reps_and_stage, get_rep_advice, get_neck, get_hip, get_knee, get_hand, get_hand_align, get_shoulder_elbow_dist
+from visuals import show_neck, show_hip, show_knee, show_hand, show_align, show_elbow, show_status
 
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose
