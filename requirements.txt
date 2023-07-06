@@ -8,6 +8,7 @@ twilio
 mediapipe
 opencv-python-headless>=3.4.2
 reportlab
+uvicorn
 tensorflow-macos==2.10.0; sys_platform == 'darwin' and 'ARM' in platform_version # Mac M-chips
 tensorflow==2.10.0; sys_platform == 'darwin' and 'ARM' not in platform_version # Mac Intel chips
 tensorflow==2.10.0; sys_platform != 'darwin' # Windows & Ubuntu Intel chips
