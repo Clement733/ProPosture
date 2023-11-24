@@ -15,13 +15,13 @@ _Video stream from the streamlit application._
 
 ## Streamlit Interface
 ### Video Upload
-![interface.png](https://github.com/Clement733/ProPosture/blob/main/images/interface.png)
+![interface](https://github.com/Clement733/ProPosture/images/interface.png)
 
 ### Annotated Model Output
-![model.png](https://github.com/Clement733/ProPosture/blob/main/images/model.png)
+![model](https://github.com/Clement733/ProPosture/blob/main/images/model.png)
 
 ### Feedback PDF
-![feedback.png](https://github.com/Clement733/ProPosture/blob/main/images/feedback.png)
+![feedback](https://github.com/Clement733/ProPosture/blob/main/images/feedback.png)
 
 ## Getting Started
 ### Setup

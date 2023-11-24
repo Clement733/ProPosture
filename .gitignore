@@ -11,4 +11,3 @@ requirements_hippo.txt
 *.pyc
 __pycache__/
 *.pdf
-images/
