@@ -5,7 +5,7 @@ Is there an objective way to **mathematically quantify** form during exercising?
 
 Using trigonometry-based error tracking to objectively determine areas of greatest performance improvement through frame-by-frame video analysis.
 
-<img src="https://s5.gifyu.com/images/SR8K4.gif" />
+![video app](https://github.com/Clement733/ProPosture/blob/main/images/visual_app.gif)
 
 _Video stream from the streamlit application._
 
@@ -15,7 +15,7 @@ _Video stream from the streamlit application._
 
 ## Streamlit Interface
 ### Video Upload
-![interface](https://github.com/Clement733/ProPosture/images/interface.png)
+![interface](https://github.com/Clement733/ProPosture/blob/main/images/interface.png)
 
 ### Annotated Model Output
 ![model](https://github.com/Clement733/ProPosture/blob/main/images/model.png)
