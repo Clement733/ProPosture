@@ -15,7 +15,7 @@ _Video stream from the streamlit application._
 
 ## Streamlit Interface
 ### Video Upload
-![interface.png]()
+![interface.png](https://github.com/Clement733/ProPosture/blob/main/images/interface.png)
 
 ### Annotated Model Output
 ![model.png](https://github.com/Clement733/ProPosture/blob/main/images/model.png)
